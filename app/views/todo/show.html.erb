@@ -1,4 +1,29 @@
 ﻿<% provide(:title, 'Категории') %>
+<script type="text/javascript">
+	function func(argument) 
+	{
+		if (document.getElementById(argument).style.display=="none") {
+			document.getElementById(argument).style.display="block";
+		}else
+		document.getElementById(argument).style.display="none";
+		
+	}
+	function strike(id)
+	{
+
+	if(document.getElementById(id).style.textDecoration == "line-through")	
+	{
+	document.getElementById(id).style.textDecoration = "none";
+	}else
+	document.getElementById(id).style.textDecoration = "line-through";
+	 
+	 
+	}
+	
+	
+	
+</script>
+
 <nav class="navbar navbar-default navbar-fixed-top" role="navigation" style="margin: 0px;background:  deepskyblue;">
   <div class="navbar-header">
     <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
@@ -30,13 +55,13 @@
             <div class="list-group-item">
               <h4 class="list-group-item-heading">
                                                 
-                <%if tod.isCompletedd==true%>
+                <%if tod.isCompleted==true%>
                 <label>
-                <input ondblclick='func("id<%=tod.id%>")' class="btn btn-primary"  name="<%tod.id%>" type="checkbox" value='1' checked/>&nbsp;<strike><%=tod.text%> </strike>
-                </label>
+                <input ondblclick='func("id<%=tod.id%>")' onclick="strike('dd<%=tod.id%>');" class="btn btn-primary"  name="<%tod.id%>" type="checkbox" value='1' checked/>&nbsp;<span id="dd<%=tod.id%>" style="text-decoration: line-through;"><%=tod.text%></span>
+				</label>
                <%else%>
                 <label>
-                <input class="btn btn-primary" ondblclick='func("id<%=tod.id%>")' name="<%tod.id%>" type="checkbox" value='1'/>&nbsp;<%=tod.text%>   
+                <input class="btn btn-primary" onclick="strike('dd<%=tod.id%>');" ondblclick='func("id<%=tod.id%>")' name="<%tod.id%>" type="checkbox" value='1'/>&nbsp;   <span id="dd<%=tod.id%>"><%=tod.text%></span>
                 </label>              
                 <%end%>                                 
 					<div id="id<%=tod.id%>" style='display: none;'>
@@ -100,17 +125,6 @@
     </div>
   </div>
 </div>      
-<script type="text/javascript">
-	function func(argument) 
-	{
-		if (document.getElementById(argument).style.display=="none") {
-			document.getElementById(argument).style.display="block";
-		}else
-		document.getElementById(argument).style.display="none";
-
-		
-	}
-</script>
 
 
 
