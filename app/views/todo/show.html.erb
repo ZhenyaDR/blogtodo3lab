@@ -1,5 +1,29 @@
 ﻿<% provide(:title, 'Категории') %>
 <script type="text/javascript">
+	
+	 
+	 
+
+	function ajax(id,status)
+	{
+		jQuery(document).ready(function()
+		{
+		
+		 jQuery.ajax({
+            url: "/updateone"+id,
+            type: "POST",
+            data: {isCompleted:status}, // Передаем данные для записи
+            dataType: "json",
+            success: function(result) 
+			{
+			alert(result);
+    		
+            }
+			
+        });
+	
+    });
+}
 	function func(argument) 
 	{
 		if (document.getElementById(argument).style.display=="none") {
@@ -8,17 +32,25 @@
 		document.getElementById(argument).style.display="none";
 		
 	}
+	var idel=function(x){
+		return document.getElementById(x);
+	 }
 	function strike(id)
 	{
+	tempid=id.substring(2);	
+	 
+		ajax1(tempid,idel("idch"+tempid).checked)
 
 	if(document.getElementById(id).style.textDecoration == "line-through")	
 	{
 	document.getElementById(id).style.textDecoration = "none";
 	}else
 	document.getElementById(id).style.textDecoration = "line-through";
-	 
-	 
 	}
+	
+	
+		
+	
 	
 	
 	
@@ -57,11 +89,11 @@
                                                 
                 <%if tod.isCompleted==true%>
                 <label>
-                <input ondblclick='func("id<%=tod.id%>")' onclick="strike('dd<%=tod.id%>');" class="btn btn-primary"  name="<%tod.id%>" type="checkbox" value='1' checked/>&nbsp;<span id="dd<%=tod.id%>" style="text-decoration: line-through;"><%=tod.text%></span>
+                <input ondblclick='func("id<%=tod.id%>")' onclick="strike('dd<%=tod.id%>');" class="btn btn-primary"  id="idch<%tod.id%>" type="checkbox" value='1' checked/>&nbsp;<span id="dd<%=tod.id%>" style="text-decoration: line-through;"><%=tod.text%></span>
 				</label>
                <%else%>
                 <label>
-                <input class="btn btn-primary" onclick="strike('dd<%=tod.id%>');" ondblclick='func("id<%=tod.id%>")' name="<%tod.id%>" type="checkbox" value='1'/>&nbsp;   <span id="dd<%=tod.id%>"><%=tod.text%></span>
+                <input class="btn btn-primary" onclick="strike('dd<%=tod.id%>');" ondblclick='func("id<%=tod.id%>")' id="idch<%tod.id%>" type="checkbox" value='1'/>&nbsp;   <span id="dd<%=tod.id%>"><%=tod.text%></span>
                 </label>              
                 <%end%>                                 
 					<div id="id<%=tod.id%>" style='display: none;'>
