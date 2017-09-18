@@ -1,5 +1,6 @@
 class TodoController < ApplicationController
  before_action :set_tod, only: [:edit, :update, :destroy]
+ before_action :set_todid, only: [:updateone]
   def index
   	@todo=Todo.new
   end
@@ -30,6 +31,15 @@ class TodoController < ApplicationController
       end
     end
   end
+   def updateone
+    respond_to do |format|
+      if @todo.update(todo_paramsone)
+        format.html { redirect_to todoshow_path }
+      else
+        format.html { render :edit }
+      end
+    end
+  end
 
   def destroy
     @todo.destroy
@@ -42,11 +52,22 @@ private
       return params.require(:todo).permit(:text,:isCompleted,:project_id)
    end
 
+   def todo_paramsone
+      return params.permit(:isCompleted)
+   end
+   
   def set_tod
     @todo = Todo.find(params[:id].to_i) rescue nil?
     if @todo==false
       redirect_to  errors_path
     end
-end
+ end
+ 
+ def set_todid
+    @todo = Todo.find(params[:id].to_i) rescue nil?
+    if @todo==false
+      redirect_to  errors_path
+    end
+ end
 
 end
