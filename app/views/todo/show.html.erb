@@ -89,11 +89,11 @@
                                                 
                 <%if tod.isCompleted==true%>
                 <label>
-                <input ondblclick='func("id<%=tod.id%>")' onclick="strike('dd<%=tod.id%>');" class="btn btn-primary"  id="idch<%tod.id%>" type="checkbox" value='1' checked/>&nbsp;<span id="dd<%=tod.id%>" style="text-decoration: line-through;"><%=tod.text%></span>
+                <input ondblclick='func("id<%=tod.id%>")' onclick="strike('dd<%=tod.id%>');" class="btn btn-primary"  id="idch<%=tod.id%>" type="checkbox" value='1' checked/>&nbsp;<span id="dd<%=tod.id%>" style="text-decoration: line-through;"><%=tod.text%></span>
 				</label>
                <%else%>
                 <label>
-                <input class="btn btn-primary" onclick="strike('dd<%=tod.id%>');" ondblclick='func("id<%=tod.id%>")' id="idch<%tod.id%>" type="checkbox" value='1'/>&nbsp;   <span id="dd<%=tod.id%>"><%=tod.text%></span>
+                <input class="btn btn-primary" onclick="strike('dd<%=tod.id%>');" ondblclick='func("id<%=tod.id%>")' id="idch<%=tod.id%>" type="checkbox" value='1'/>&nbsp;   <span id="dd<%=tod.id%>"><%=tod.text%></span>
                 </label>              
                 <%end%>                                 
 					<div id="id<%=tod.id%>" style='display: none;'>
