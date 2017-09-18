@@ -11,7 +11,7 @@
 		
 		 jQuery.ajax({
             url: "/updateone"+id,
-            type: "POST",
+            type: "GET",
             data: {isCompleted:status}, // Передаем данные для записи
             dataType: "json",
             success: function(result) 
